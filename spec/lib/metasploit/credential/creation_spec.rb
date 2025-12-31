@@ -610,7 +610,7 @@ RSpec.describe Metasploit::Credential::Creation do
             origin_type: :service
         }
         host = FactoryBot.create(:mdm_host, address: opts[:address], workspace_id: opts[:workspace_id])
-        FactoryBot.create(:mdm_service, host_id: host.id, port: opts[:port], proto: opts[:protocol])
+        FactoryBot.create(:mdm_service, host_id: host.id, port: opts[:port], proto: opts[:protocol], name: opts[:service_name])
         expect { test_object.create_credential_origin_service(opts)}.to_not change{Mdm::Service.count }
       end
     end

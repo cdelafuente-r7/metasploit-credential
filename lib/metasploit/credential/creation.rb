@@ -563,9 +563,8 @@ module Metasploit::Credential::Creation
     workspace_id     = opts.fetch(:workspace_id)
 
     host_object    = Mdm::Host.where(address: address, workspace_id: workspace_id).first_or_create
-    service_object = Mdm::Service.where(host_id: host_object.id, port: port, proto: protocol).first_or_initialize
+    service_object = Mdm::Service.where(host_id: host_object.id, port: port, proto: protocol, name: service_name).first_or_initialize
 
-    service_object.name  = service_name
     service_object.state = "open"
     service_object.save!
 
